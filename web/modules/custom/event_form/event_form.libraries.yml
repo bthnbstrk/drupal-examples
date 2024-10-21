@@ -1,0 +1,9 @@
+front-list-style:
+  css:
+    theme:
+      css/front.css: {}
+
+back-list-style:
+  css:
+    theme:
+      css/back.css: {}

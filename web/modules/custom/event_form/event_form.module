@@ -1,0 +1,22 @@
+<?php
+
+
+function event_form_theme($existing, $type, $theme, $path)
+{
+  return [
+    'event_form_template' => [
+      'variables' => [
+        'title' => NULL,
+        'items' => []
+      ]
+    ],
+    'event_config_template' => [
+      'variables' => [
+        'title' => NULL,
+        'items' => []
+      ]
+    ],
+  ];
+
+
+}

@@ -1,0 +1,7 @@
+name: 'event_form'
+type: module
+description: 'This module save event form data in database'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:config

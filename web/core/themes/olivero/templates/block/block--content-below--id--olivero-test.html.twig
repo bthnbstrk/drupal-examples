@@ -1,0 +1,18 @@
+
+{% set countOfBannerImages =  content['field_banner_image']['#items']|length  %}
+
+<div class="container-fluid full-width-section">
+  <div class="text-section">
+    <h2 class="etiya-color">{{ content['field_banner_title'][0]['#context']['value'] }}</h2>
+    <p class="etiya-color">{{ content['field_banner_description'][0]['#context']['value'] }}</p>
+    <a target="_blank" class="custom-button" href="{{ content['field_banner_btn'][0]['#url'].uri }}">{{ content['field_banner_btn'][0]['#title'] }}</a>
+  </div>
+
+  {% if countOfBannerImages > 1 %}
+    <div class="image-section">
+      {% for i in range(0,countOfBannerImages) %}
+        {{ content['field_banner_image'][i] }}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

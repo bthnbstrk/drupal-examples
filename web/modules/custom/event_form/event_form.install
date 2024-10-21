@@ -1,0 +1,129 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Install, update and uninstall functions for the event_form module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function event_form_install(): void {
+  \Drupal::messenger()->addStatus(t('Module event_form has been installed.'));
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function my_custom_module_views_data() {
+  $data = [];
+
+  // Tablonuzun adı
+  $data['event_form'] = [
+    'table' => [
+      'group' => t('Event Form'),
+      'base' => [
+        'field' => 'id', // Birincil anahtar
+        'title' => t('Event Forms'),
+      ],
+    ],
+    'id' => [
+      'title' => t('ID'),
+      'field' => [
+        'id' => 'integer',
+      ],
+    ],
+    'first_name' => [
+      'title' => t('First Name'),
+      'field' => [
+        'id' => 'string',
+      ],
+    ],
+    // Diğer alanlarınızı buraya ekleyebilirsiniz.
+  ];
+
+  return $data;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function event_form_uninstall(): void {
+  \Drupal::messenger()->addStatus(t('Module event_form has been uninstalled.'));
+}
+
+/**
+ * Implements hook_schema().
+ */
+function event_form_schema() {
+  $schema['event_form'] = [
+    'description' => 'Table description.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique record ID.',
+      ],
+      'participation_status' => [
+        'description' => 'Boolean indicating whether this record is active.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+      ],
+      'birth_date' => [
+         'type' => 'varchar_ascii',
+         'length' => 30,
+         'not null' => TRUE,
+         'description' => 'Participant birth date.',
+      ],
+      'first_name' => [
+        'type' => 'varchar_ascii',
+        'length' => 30,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Participant first name.',
+      ],
+      'last_name' => [
+        'type' => 'varchar_ascii',
+        'length' => 30,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Participant last name.',
+      ],
+      'email' => [
+        'type' => 'varchar_ascii',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Participant email address.',
+      ],
+      'phone_number' => [
+        'type' => 'varchar_ascii',
+        'length' => 30,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Employee zipcode.',
+      ],
+      'event_type' => [
+          'description' => 'Boolean indicating whether this record is active.',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+          'size' => 'tiny',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'status' => ['participation_status'],
+    ],
+  ];
+
+  return $schema;
+}
+
+

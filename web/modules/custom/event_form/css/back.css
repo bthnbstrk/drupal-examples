@@ -1,0 +1,8 @@
+.my-custom-form {
+  display: flex;
+  align-items: center;
+}
+
+.form-item {
+  margin-right: 15px; /* Elemanlar arasında boşluk */
+}

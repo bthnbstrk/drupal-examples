@@ -1,0 +1,32 @@
+event_form.event:
+  path: '/event-form'
+  defaults:
+    _title: 'Event Registration Form'
+    _form: 'Drupal\event_form\Form\EventForm'
+  requirements:
+    _permission: 'access content'
+
+event_form.list:
+  path: '/event-form/list'
+  defaults:
+    _controller: '\Drupal\event_form\Controller\EventFormController::fetchAll'
+    _title: 'List of participants'
+  requirements:
+    _permission: 'access content'
+
+event_form.configuration:
+  path: '/admin/config/event-form-configurations'
+  defaults:
+    _controller: '\Drupal\event_form\Controller\EventFormController::configList'
+    _title: 'Configurations'
+  requirements:
+    _permission: 'access content'
+
+event_form.update_list:
+  path: '/event/update-list'
+  defaults:
+    _controller: '\Drupal\event_form\Controller\EventFormController::updateList'
+    _title: 'Update Participants'
+  requirements:
+    _permission: 'access content'
+

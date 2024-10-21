@@ -1,0 +1,36 @@
+<form action="{{ url('event_form.update_list') }}" method="post" multiple="">
+<table>
+  <thead>
+    <tr>
+      <th>#ID</th>
+      <th>Full Name</th>
+      <th>E-mail</th>
+      <th>Event Type</th>
+      <th>Phone Number</th>
+      <th>Participation Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for id, participant in items %}
+    <tr>
+      <td name="participant_id">{{ id }}</td>
+      <td>{{ participant.first_name ~ participant.last_name }}</td>
+      <td>{{ participant.email }}</td>
+      <td>{{ participant.event_name }}</td>
+      <td>{{ participant.phone_number }}</td>
+      <td class="align-items-center ml-5">
+        <select name="participants[{{ id }}][participant_status]" style="padding: 10px">
+          <option value="1" {{ participant.participation_status == 1 ? 'selected' : '' }}>Yes</option>
+          <option value="0" {{ participant.participation_status == 0 ? 'selected' : '' }}>No</option>
+        </select>
+        <input type="hidden" name="participants[{{ id }}][participant_id]" value="{{ id }}">
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+  <div class="button-container" style="text-align: right;margin-top:50px;">
+    <input type="submit" class="button button--primary js-form-submit form-submit" value="Save Configurations">
+  </div>
+</form>
